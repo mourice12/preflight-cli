@@ -1,5 +1,5 @@
 name: Preflight CI
-description: Validate GitHub Actions workflows against your actual repo before merging. Catches missing secrets, broken action refs, deprecated runners, invalid permissions, and more.
+description: Lint GitHub Actions workflows against your real repo config. Catches missing secrets, bad action refs, deprecated runners.
 author: jefferyreed
 branding:
   icon: check-circle
