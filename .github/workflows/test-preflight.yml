@@ -1,0 +1,19 @@
+name: Preflight self-test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run preflight on our own workflows
+        uses: ./
+        with:
+          verbose: "true"

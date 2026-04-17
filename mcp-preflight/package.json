@@ -1,0 +1,30 @@
+{
+  "name": "mcp-preflight",
+  "version": "0.1.0",
+  "description": "Model Context Protocol server exposing preflight-ci checks to Claude Code and other MCP clients.",
+  "bin": {
+    "mcp-preflight": "dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/server.js",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "preflight-ci": "file:.."
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.2"
+  }
+}

@@ -1,0 +1,25 @@
+# Development sources — only dist/ ships
+src/
+tests/
+.claude/
+
+# Project config not needed at runtime
+tsconfig.json
+CLAUDE.md
+
+# Tooling / scratch
+*.test.ts
+*.tsbuildinfo
+.vscode/
+.idea/
+coverage/
+.nyc_output/
+
+# Editor / OS cruft
+.DS_Store
+*.swp
+*.swo
+
+# Environment
+.env
+.env.*

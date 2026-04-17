@@ -1,0 +1,112 @@
+{
+  "name": "vscode-preflight",
+  "displayName": "Preflight CI",
+  "description": "Validate GitHub Actions workflows against your real repo config, inside VS Code. Red/yellow squiggles + quick-fixes for undefined secrets, deprecated actions, invalid permissions, and more.",
+  "version": "0.1.0",
+  "publisher": "preflight-ci",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "github actions",
+    "workflows",
+    "ci/cd",
+    "linter",
+    "yaml"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/.github/workflows/*.yml",
+    "workspaceContains:**/.github/workflows/*.yaml"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "preflight.run",
+        "title": "Preflight: Run checks on workflows",
+        "category": "Preflight"
+      },
+      {
+        "command": "preflight.clear",
+        "title": "Preflight: Clear diagnostics",
+        "category": "Preflight"
+      },
+      {
+        "command": "preflight.showOutput",
+        "title": "Preflight: Show output log",
+        "category": "Preflight"
+      },
+      {
+        "command": "preflight.diagnoseLatest",
+        "title": "Preflight: Diagnose latest failed run",
+        "category": "Preflight"
+      },
+      {
+        "command": "preflight.diagnoseRun",
+        "title": "Preflight: Diagnose specific run...",
+        "category": "Preflight"
+      },
+      {
+        "command": "preflight.clearApiKey",
+        "title": "Preflight: Clear Anthropic API key",
+        "category": "Preflight"
+      }
+    ],
+    "configuration": {
+      "title": "Preflight",
+      "properties": {
+        "preflight.runOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Run preflight checks automatically when a workflow YAML file is saved."
+        },
+        "preflight.disabledChecks": {
+          "type": "array",
+          "default": [
+            "actions"
+          ],
+          "description": "Check names to skip. Defaults to ['actions'] because that check hits the GitHub API per action ref and slows down saves. Remove from the list to enable.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "syntax",
+              "secrets",
+              "variables",
+              "environments",
+              "actions",
+              "expressions",
+              "permissions",
+              "runners",
+              "jobs"
+            ]
+          }
+        },
+        "preflight.contextCacheSeconds": {
+          "type": "number",
+          "default": 60,
+          "minimum": 0,
+          "description": "How long to cache the fetched GitHub repo context (secrets/vars/environments lists) between runs. 0 disables the cache."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "package": "vsce package --no-dependencies",
+    "vscode:prepublish": "npm run build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "preflight-ci": "file:.."
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@types/vscode": "~1.90.0",
+    "typescript": "^6.0.2"
+  }
+}

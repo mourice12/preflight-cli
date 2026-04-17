@@ -1,0 +1,32 @@
+name: Preflight CI
+description: Validate GitHub Actions workflows against your actual repo before merging. Catches missing secrets, broken action refs, deprecated runners, invalid permissions, and more.
+author: jefferyreed
+branding:
+  icon: check-circle
+  color: green
+
+inputs:
+  checks:
+    description: Comma-separated list of checks to run (syntax, secrets, variables, environments, actions, expressions, permissions, runners, jobs).
+    required: false
+    default: syntax,secrets,variables,environments,actions,expressions,permissions,runners,jobs
+  verbose:
+    description: Include per-finding fix text in the job summary.
+    required: false
+    default: "false"
+  github-token:
+    description: GitHub token used to read repo metadata (secret names, variables, environments). Defaults to the automatic action token.
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  error_count:
+    description: Number of error-severity findings.
+  warning_count:
+    description: Number of warning-severity findings.
+  info_count:
+    description: Number of info-severity findings.
+
+runs:
+  using: node20
+  main: dist/action.js
