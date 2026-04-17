@@ -1,0 +1,14 @@
+import type { Octokit } from '@octokit/rest';
+import type { CheckFunction } from '../types';
+import { syntaxCheck } from './syntax';
+import { secretsCheck } from './secrets';
+import { variablesCheck } from './variables';
+import { environmentsCheck } from './environments';
+import { makeActionsCheck } from './actions';
+import { expressionsCheck } from './expressions';
+import { permissionsCheck } from './permissions';
+import { runnersCheck } from './runners';
+import { jobsCheck } from './jobs';
+export declare const CHECK_NAMES: readonly ["syntax", "secrets", "variables", "environments", "actions", "expressions", "permissions", "runners", "jobs"];
+export declare function getAllChecks(octokit: Octokit): CheckFunction[];
+export { syntaxCheck, secretsCheck, variablesCheck, environmentsCheck, makeActionsCheck, expressionsCheck, permissionsCheck, runnersCheck, jobsCheck, };

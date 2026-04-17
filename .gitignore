@@ -1,8 +1,11 @@
 node_modules/
-dist/
-*.js
+
+# NOTE: dist/ IS committed — GitHub Actions run the bundled dist/action.js
+# directly from the repo tree, so it must be tracked. Source maps and scratch
+# declaration files aren't needed at runtime and stay ignored.
 *.js.map
-*.d.ts
+*.d.ts.map
+!dist/**/*.d.ts
 !.prettierrc.js
 
 npm-debug.log*
